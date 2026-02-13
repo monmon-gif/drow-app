@@ -37,14 +37,27 @@ window.addEventListener('load', function() {
     socket.emit('drawEnd');
   }, false);
 
-  canvas.addEventListener("mousemove", function (event) {
+  canvas.addEventListener("pointerdown", function (event) {
+    drawing = true;
+    pos = getPosT(event);   // 既存の座標取得関数そのまま使える
+  });
+
+  canvas.addEventListener("pointermove", function (event) {
+    if (!drawing) return;
+
     var newPos = getPosT(event);
-    if (drawing) {
-      draw(pos, newPos, drawColor);
-      socket.emit('draw', { pos: pos, newPos: newPos, drawColor: drawColor});
-      pos = newPos;
-    }
-  }, false);
+    draw(pos, newPos, drawColor);
+    socket.emit('draw', { pos: pos, newPos: newPos, drawColor: drawColor });
+    pos = newPos;
+  });
+
+  canvas.addEventListener("pointerup", function () {
+    drawing = false;
+  });
+
+  canvas.addEventListener("pointerleave", function () {
+    drawing = false;
+  });
 
   function draw (pos, newPos, drawColor) {
     c.strokeStyle = drawColor;
