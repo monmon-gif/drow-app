@@ -68,11 +68,14 @@ window.addEventListener('load', function() {
     c.closePath();
   }
 
-  function getPosT (event) {
-    var mouseX = event.pageX;
-    var mouseY = event.pageY;
-    return {x:mouseX, y:mouseY};
+  function getPosT(event) {
+    const rect = canvas.getBoundingClientRect();
+    return {
+      x: event.clientX - rect.left,
+      y: event.clientY - rect.top
+    };
   }
+
 
   function clear () {
     c.clearRect(0,0,w,h);

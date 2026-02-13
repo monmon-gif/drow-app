@@ -1,16 +1,57 @@
-* {margin:0px; padding:0px;}
-canvas {width:500px; height:500px; border: medium solid #CCC; }
-li {width:50px; height: 50px; float:left; list-style: none;}
-#red {background-color: #FF0000;}
-#yellow {background-color: #FFFF00;}
-#blue {background-color: #0000FF;}
-#green {background-color: #008000;}
-#purple {background-color: #800080;}
-#white {background-color: #FFFFFF;}
-#black {background-color: #000000;}
+/* リセット */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
 
-#clear {width: 50px; height: 50px; float: left; background-color: #DDD;font-size: 12px; text-align: center; line-height: 50px;}
+html, body {
+  width: 100%;
+  height: 100%;
+}
 
 canvas {
-  touch-action: none;
+  width: 100vw;
+  height: 80vh;   /* 高さを画面の80%に */
+  border: medium solid #CCC;
+  display: block;
 }
+
+/* ===== 色パレット中央寄せ ===== */
+
+/* floatを無効化 */
+li {
+  width: 50px;
+  height: 50px;
+  list-style: none;
+  float: none;  /* ← 重要 */
+}
+
+#clear {
+  width: 50px;
+  height: 50px;
+  background-color: #DDD;
+  font-size: 12px;
+  text-align: center;
+  line-height: 50px;
+  float: none;  /* ← 重要 */
+}
+
+/* ulを中央寄せ */
+ul {
+  width: 100%;
+  display: flex;
+  justify-content: center;  /* ← 真ん中 */
+  align-items: center;
+  gap: 5px;
+  margin-bottom: 20px;
+}
+
+/* ===== 色設定 ===== */
+#red { background-color: #FF0000; }
+#yellow { background-color: #FFFF00; }
+#blue { background-color: #0000FF; }
+#green { background-color: #008000; }
+#purple { background-color: #800080; }
+#white { background-color: #FFFFFF; border: 1px solid #ccc; }
+#black { background-color: #000000; }
